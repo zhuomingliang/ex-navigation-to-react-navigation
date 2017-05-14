@@ -1,6 +1,6 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
+import { Platform, StyleSheet, View } from 'react-native';
+import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Screen1 from '../screens/Screen1';
@@ -107,6 +107,20 @@ export const Tabs = TabNavigator({
   },
 });
 
+
+const CustomDrawerContentComponent = (props) => (
+  <View style={style.container}>
+    <DrawerItems {...props} />
+  </View>
+);
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'chocolate' 
+  },
+});
+
 export const Drawer = DrawerNavigator({
   Home: {
     screen: Stack1,
@@ -132,4 +146,7 @@ export const Drawer = DrawerNavigator({
       },
     },
   },
-}, {drawerWidth: 150});
+}, {
+  drawerWidth: 200,
+  contentComponent: CustomDrawerContentComponent
+});
