@@ -14,17 +14,16 @@ import Screen8 from '../screens/Screen8';
 import Screen9 from '../screens/Screen9';
 import Screen10 from '../screens/Screen10';
 
-const DrawerIcon = ({ navigate }) => {
+const DrawerIcon = ({ navigation }) => {
   if (Platform.OS === 'ios') {
     return null;
   }
-
   return (
     <Icon 
       name="md-menu" 
       size={28} 
       color="black" 
-      onPress={() => navigate('DrawerOpen')}
+      onPress={() => navigation.navigate('DrawerOpen')}
       style={{ paddingLeft: 20 }}
     />
   );
@@ -34,9 +33,10 @@ export const Stack1 = StackNavigator({
   Screen1: {
     screen: Screen1,
     navigationOptions: {
-      header: (props) => ({
-        left: <DrawerIcon {...props} />,
-      }),
+      // header: (props) => ({
+      //   left: <DrawerIcon {...props} />,
+      // }),
+      header: (props) => <DrawerIcon {...props} />
     },
   },
   Screen2: {
@@ -51,9 +51,7 @@ export const Stack2 = StackNavigator({
   Screen4: {
     screen: Screen4,
     navigationOptions: {
-      header: (props) => ({
-        left: <DrawerIcon {...props} />,
-      }),
+      header: (props) => <DrawerIcon {...props} />
     },
   },
   Screen5: {
@@ -71,9 +69,7 @@ export const Stack3 = StackNavigator({
   Screen8: {
     screen: Screen8,
     navigationOptions: {
-      header: (props) => ({
-        left: <DrawerIcon {...props} />,
-      }),
+      header: (props) => <DrawerIcon {...props} />
     },
   },
   Screen9: {
@@ -88,31 +84,25 @@ export const Tabs = TabNavigator({
   Home: {
     screen: Stack1,
     navigationOptions: {
-      tabBar: {
-        label: 'Home',
-        icon: ({ tintColor }) => 
-          <Icon name="ios-albums-outline" size={32} color={tintColor} />,
-      },
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor }) => 
+        <Icon name="ios-albums-outline" size={32} color={tintColor} />,
     },
   },
   Camera: {
     screen: Stack2,
     navigationOptions: {
-      tabBar: {
-        label: 'Camera',
-        icon: ({ tintColor }) => 
-          <Icon name="ios-aperture-outline" size={32} color={tintColor} />,
-      },
+      tabBarLabel: 'Camera',
+      tabBarIcon: ({ tintColor }) => 
+        <Icon name="ios-aperture-outline" size={32} color={tintColor} />,
     },
   },
   Analytics: {
     screen: Stack3,
     navigationOptions: {
-      tabBar: {
-        label: 'Analytics',
-        icon: ({ tintColor }) => 
-          <Icon name="ios-analytics-outline" size={32} color={tintColor} />,
-      },
+      tabBarLabel: 'Analytics',
+      tabBarIcon: ({ tintColor }) => 
+        <Icon name="ios-analytics-outline" size={32} color={tintColor} />,
     },
   },
 });
@@ -142,4 +132,4 @@ export const Drawer = DrawerNavigator({
       },
     },
   },
-});
+}, {drawerWidth: 150});
